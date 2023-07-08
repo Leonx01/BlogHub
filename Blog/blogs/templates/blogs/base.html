@@ -2,16 +2,25 @@
 <span>
     <a href="{% url 'blogs:index' %}">Home</a>
 </span>
-    
+    <span>-</span>
 <span>
     <a href="{% url 'blogs:posts' %}">Post</a>
 </span>
+<span>-</span>
 <span>
     {% if user.is_authenticated %}
-        Hello,{{ user.name}}.
+        Hello,{{user.username}}</span>
     {% else %}
     <a href="{% url 'users:login' %}">Log in</a>
     {% endif %}
+</span>
+<span>-</span>
+<span>
+    <a href="{% url 'users:logout'%}">Log out</a>
+</span>
+<span>-</span>
+<span>
+    <a href="{% url 'users:register'%}">Register</a>
 </span>
 </div>
 <style>
