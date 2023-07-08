@@ -30,6 +30,9 @@
     <form method="post" action="{% url 'users:login' %}">
         {% csrf_token %}
         {{ form.as_p }}
+        <p style="font-size: smaller;">
+            Don't have an account yet?<a href="{%url 'users:login'%}">Register</a> now.
+        </p>
         <button class="login--btn" name="submit">log in</button>
     <input type="hidden" name="next" value="{% url 'blogs:index' %}"/>
     <!--指定登陆成功 后跳转的界面-->

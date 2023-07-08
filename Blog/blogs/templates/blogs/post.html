@@ -44,13 +44,13 @@
 </head>
 <body>
     <h1>{{post.title}}</h1>
-    <span class="post--date">By on {{post.date_added|date:"d M y"}}</span>
+    <span class="post--date">By on {{post.date_added|date:"d M y"}} , {{post.author}}</span>
     <p class="post--text" >
         {{post.text}}
     </p>
-        <a href="{% url 'blogs:edit_post' post.id %}">
-            <button  class="edit--post--btn">Edit</button>
-        </a>
+            <a href="{% url 'blogs:edit_post' post.id %}">
+                <button  class="edit--post--btn">Edit</button>
+            </a>    
 </body>
 <script>
 </script>

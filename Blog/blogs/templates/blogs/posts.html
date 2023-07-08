@@ -45,7 +45,7 @@
             <a class="title" href="{%url 'blogs:post' post.id%}" >{{post.title}}</a>
         </div>
         <div>
-            <span class = "date">By on {{post.date_added|date:"d M Y"}}</span>
+            <span class = "date">By on {{post.date_added|date:"d M Y"}} , {{post.author}}</span>
         </div>
 
     </li>
