@@ -1,0 +1,26 @@
+<div class = "topnav">
+<span>
+    <a href="{% url 'blogs:index' %}">Home</a>
+</span>
+    
+<span>
+    <a href="{% url 'blogs:posts' %}">Post</a>
+</span>
+<span>
+    {% if user.is_authenticated %}
+        Hello,{{ user.name}}.
+    {% else %}
+    <a href="{% url 'users:login' %}">Log in</a>
+    {% endif %}
+</span>
+</div>
+<style>
+    .topnav{
+        font-family: 'Times New Roman', Times, serif;
+        color: black;
+        font-size: larger;
+    }
+</style>
+
+{% block content%}
+{% endblock content%}

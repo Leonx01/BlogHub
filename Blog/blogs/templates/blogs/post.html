@@ -1,0 +1,58 @@
+{% extends 'blogs/base.html' %}
+{% block content%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post</title>
+    <style>
+        .post--text{
+            
+                font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                color: #000;
+                text-decoration: none;
+                font-size:larger;
+                text-indent: 20px;
+            
+        }
+        .edit--post--btn {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 12px 28px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;}
+
+        .post--text{
+            border: 5px solid black;
+            padding: 10px;
+            /*background: url(img_flwr.gif);
+            */
+            background-repeat: no-repeat;
+            }
+        .post--date{
+            font-family: 'Times New Roman', Times, serif;
+            color: #757373;
+            font-size: medium;
+            }
+    </style>
+</head>
+<body>
+    <h1>{{post.title}}</h1>
+    <span class="post--date">By on {{post.date_added|date:"d M y"}}</span>
+    <p class="post--text" >
+        {{post.text}}
+    </p>
+        <a href="{% url 'blogs:edit_post' post.id %}">
+            <button  class="edit--post--btn">Edit</button>
+        </a>
+</body>
+<script>
+</script>
+</html>
+{% endblock content %}
