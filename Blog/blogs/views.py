@@ -5,6 +5,9 @@ from blogs.models import BlogPost
 from blogs.forms import PostForm
 from django.contrib.auth.decorators import login_required
 # Create your views here.
+def check_post_author(request,post):
+    return request.user==post.author
+
 def index(request):
     return render(request, 'blogs/index.html')
 
@@ -20,7 +23,7 @@ def post(request,post_id):
 @login_required
 def edit_post(request,post_id):
     post = BlogPost.objects.get(id=post_id)
-    if request.user!=post.author:
+    if not check_post_author(request,post):
         raise Http404
     if request.method != 'POST':
         form = PostForm(instance=post)
@@ -44,3 +47,11 @@ def new_post(request):
             return HttpResponseRedirect(reverse('blogs:posts'))
     context = {'form':form}
     return render(request,'blogs/new_post.html',context)
+@login_required
+def delete_post(request,post_id):
+    post = BlogPost.objects.get(id=post_id)
+    if not check_post_author(request,post):
+        raise Http404
+    else:
+        post.delete()
+        return HttpResponseRedirect(reverse('blogs:posts'))
