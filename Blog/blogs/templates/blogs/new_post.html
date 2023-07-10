@@ -1,12 +1,7 @@
 {% extends 'blogs/base.html' %}
-{% block content%}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Post</title>
-    <style>
+{% block title%}New Post{%endblock title%}
+{%block head%}
+<style>
         .confirm--btn {
             background-color: #4CAF50;
             border: none;
@@ -54,9 +49,9 @@
                 font-size:larger;
                 
             }
-    </style>
-</head>
-<body>
+</style>
+{%endblock head%}
+{%block main%}
     <p>
       Create a new Post ...  
     </p>
@@ -77,6 +72,4 @@
     
     <button type="submit" class="confirm--btn">Confirm</button>
     </form>
-</body>
-</html>
-{% endblock content%}
+    {%endblock main%}

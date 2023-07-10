@@ -12,7 +12,7 @@ def index(request):
     return render(request, 'blogs/index.html')
 
 def posts(request):
-    posts = BlogPost.objects.order_by('date_added')
+    posts = BlogPost.objects.order_by('date_added').filter(audited=True)
     context = {'posts': posts}
     return render(request, 'blogs/posts.html', context)
 

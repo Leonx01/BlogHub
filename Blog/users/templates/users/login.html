@@ -1,42 +1,59 @@
 {% extends 'blogs/base.html' %}
-{% block content %}
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log in</title>
-    <style>
-        .login--btn {
-            background-color: #4CAF50;
-            border: none;
-            color: white;
-            padding: 12px 28px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;}
-    </style>
-</head>
-<body>
+{%block title%}用户登录{%endblock title%}
+{%block head%}
+<style>
+    .box{
+        width: 500px;
+        padding: 50px;
+        margin: auto;
+        justify-content: center;
+    }
+    .box a{
+        display: block;
+        text-align: center;
+        font-size:smaller;
+        color:#198754;
+        text-decoration:none;
+    }
+</style>
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+{%endblock head%}
+{%block main%}
     {% if form.errors %}
-    <p>
-        Your username and password didn't match. Please try again.
-    </p>
+    <div class="alert alert-danger" style="width: 1000px;margin: auto;">
+      <a href="#" class="close" data-dismiss="alert"></a>
+      {% for _, error in form.errors.items %}
+      <strong>错误信息{{  error }}</strong>
+      {% endfor %}
+    </div>
     {% endif %}
-    <form method="post" action="{% url 'users:login' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <p style="font-size: smaller;">
-            Don't have an account yet?<a href="{%url 'users:login'%}">Register</a> now.
-        </p>
-        <button class="login--btn" name="submit">log in</button>
-    <input type="hidden" name="next" value="{% url 'blogs:index' %}"/>
-    <!--指定登陆成功 后跳转的界面-->
     </form>
-</body>
-</html>
-{% endblock content %}
+    <div class="box">
+        <form method="post" action="{% url 'users:login' %}">
+            {% csrf_token %}
+          <h1 class="h2 mb-3 fw-normal" style="text-align: center; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Log in</h1>
+          <div class="form-floating">
+            <input name="username" type="username" class="form-control" id="floatingInput" placeholder="用户名">
+            <label for="floatingInput">登录ID</label>
+          </div>
+          <div class="form-floating">
+            <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="输入密码">
+            <label for="floatingPassword">密码</label>
+          </div>
+          <div class="form-check text-start my-3">
+            <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault" style="font-size:smaller">
+              记住密码
+            </label>
+          </div>
+          <button class="btn btn-success w-100 py-2" type="submit">登录</button>
+          <input type="hidden" name="next" value="{% url 'blogs:index' %}"/>
+          <div>
+            <a href="{%url 'users:register'%}">
+                没有账号？🔒立即注册</a> 
+          </div>
+          
+        </form>
+       
+    </div>
+{% endblock main %}
